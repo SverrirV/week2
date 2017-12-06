@@ -28,7 +28,7 @@ module.exports = function(injected){
 
                     },
                     "JoinGame": function (cmd) {
-                        if(gameState.gameFull()){
+                        if(gameState.isFull()){
                             applyEvents( [{
                                 gameId: cmd.gameId,
                                 type: "FullGameJoinAttempted",
@@ -58,11 +58,64 @@ module.exports = function(injected){
                         }]);
                     },
                     "PlaceMove": function(cmd){
+                        // When a player attempts to make a move out of turn.
+                        if((gameState.isTurnX() && cmd.side === 'X')
+                        || (!gameState.isTurnX() && cmd.side === 'O')) {
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "NotYourMove",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                            }]);
 
+                            return;
+                        }
 
-                        // Check here for conditions which prevent command from altering state
+                        // When a player attempts to move to a square that is already occupied.
+                        if(!gameState.isCellEmpty(cmd.x, cmd.y)) {
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "IllegalMove",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                            }]);
 
+                            return;
+                        }
 
+                        // Move is legal.
+                        applyEvents([{
+                            gameId: cmd.gameId,
+                            type: "MovePlaced",
+                            user: cmd.user,
+                            name: cmd.name,
+                            timeStamp: cmd.timeStamp,
+                            side: cmd.side,
+                            x: cmd.x,
+                            y: cmd.y
+                        }]);
+
+                        if(gameState.checkIfWon(cmd)) {
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "GameWon",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side
+                            }]);
+                        }
+
+                        if(gameState.isDraw()) {
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "GameDraw",
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                            }]);
+                        }
 
                     },
                     "RequestGameHistory": function(cmd){
