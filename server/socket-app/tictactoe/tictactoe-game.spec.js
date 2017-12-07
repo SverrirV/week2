@@ -91,7 +91,7 @@ fdescribe('join game command', function () {
     });
 
 
-    it('should emit game joined event...', function () {
+    fit('should emit game joined event...', function () {
 
         given = [{
             type: "GameCreated",
@@ -162,7 +162,7 @@ fdescribe('move command', function () {
             when = {
                 type: "PlaceMove",
                 user: {
-                    userName: "Gummi"
+                    userName: "TheGuy"
                 },
                 name: "TheFirstGame",
                 timeStamp: "2014-12-02T11:29:29",
@@ -171,17 +171,17 @@ fdescribe('move command', function () {
                 y: 0
             };
 
-            then = {
+            then = [{
                 type: "MovePlaced",
                 user: {
-                    userName: "Gummi"
+                    userName: "TheGuy"
                 },
                 name: "TheFirstGame",
                 timeStamp: "2014-12-02T11:29:29",
                 side: 'X',
                 x: 0,
                 y: 0
-            }
+            }]
         });
 
         it('should emit IllegalMove when square is already occupied', function () {

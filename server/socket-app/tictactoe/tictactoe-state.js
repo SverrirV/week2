@@ -27,7 +27,7 @@ module.exports = function (injected) {
                 state.fullGame = false;
             }
 
-            if(event.type === "MovePlaced") {
+            if(event.type === "PlaceMove") {
                 state.board[event.x][event.y] = event.side;
                 state.turnCounter++;
             }
@@ -39,7 +39,7 @@ module.exports = function (injected) {
         }
 
         function isTurnX() {
-            return state.turnCounter % 2 === 0 ? true : false;
+            return state.turnCounter % 2 === 1 ? true : false;
         }
 
         function isFull() {
@@ -96,6 +96,12 @@ module.exports = function (injected) {
 
         return {
             processEvents: processEvents,
+            isTurnX: isTurnX,
+            isFull: isFull,
+            isCellEmpty: isCellEmpty,
+            isGameWon: isGameWon,
+            isDraw: isDraw,
+            checkIfWon: checkIfWon
         }
     };
 };
