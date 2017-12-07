@@ -245,14 +245,14 @@ fdescribe('move command', function () {
                 y: 1
             }
 
-            then = {
+            then = [{
                 type: "NotYourMove",
                 user: {
                     userName: "TheGuy"
                 },
                 name: "TheFirstGame",
                 timeStamp: "2014-12-02T11:29:29",
-            }
+            }]
         });
 
         it("Should emit game won on", function () {
