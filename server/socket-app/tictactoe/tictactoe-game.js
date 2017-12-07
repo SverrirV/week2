@@ -86,18 +86,19 @@ module.exports = function(injected){
                         }
 
                         // Move is legal.
-                        applyEvents([{
-                            gameId: cmd.gameId,
-                            type: "MovePlaced",
-                            user: cmd.user,
-                            name: cmd.name,
-                            timeStamp: cmd.timeStamp,
-                            side: cmd.side,
-                            x: cmd.x,
-                            y: cmd.y
-                        }]);
-
-                        if(gameState.checkIfWon(cmd)) {
+                       if(!gameState.checkIfWon(cmd)){
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "MovePlaced",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side: cmd.side,
+                                x: cmd.x,
+                                y: cmd.y
+                            }]);
+                        }    
+                        else {
                             applyEvents([{
                                 gameId: cmd.gameId,
                                 type: "GameWon",
@@ -118,11 +119,23 @@ module.exports = function(injected){
                         }
 
                     },
+                    "GameWon": function(cmd){
+                        // Check if game has been won
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "GameWon",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                            }]);
+                            return;
+                    },
+
                     "RequestGameHistory": function(cmd){
                         // Game does not handle this query command, is declared here for making tests more robust.
                     }
                 };
-
+                console.log("......................................" + cmd.type);
                 if(!cmdHandlers[cmd.type]){
                     throw new Error("I do not handle command of type " + cmd.type)
                 }

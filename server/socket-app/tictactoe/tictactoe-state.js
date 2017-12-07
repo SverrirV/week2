@@ -81,7 +81,7 @@ module.exports = function (injected) {
                 }
             }
 
-            if(col===n || row===n || diag===n || rdiag===n) {
+            if(col===n-1 || row===n-1 || diag===n-1 || rdiag===n-1) {
                 return true;
             }
 

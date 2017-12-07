@@ -25,6 +25,17 @@ let joinEvent = {
     timeStamp: "2014-12-02T11:29:29"
 };
 
+// let winState = {
+//     board: [
+//         ['X', 'X', ''],
+//         ['O', 'O', ''],
+//         ['', '', '']
+//     ],
+//     fullGame: true,
+//     isGameWon: false,
+//     turnCounter: 3
+// };
+
 
 describe('create game command', function() {
 
@@ -256,7 +267,8 @@ fdescribe('move command', function () {
         });
 
         it("Should emit game won on", function () {
-            given = [createEvent, joinEvent, {
+            given = [createEvent, joinEvent,
+            {
                 type: "PlaceMove",
                 user: {
                     userName: "TheGuy"
@@ -266,42 +278,42 @@ fdescribe('move command', function () {
                 side: 'X',
                 x: 0,
                 y: 0
-            }];
+            },
+            {
+                type: "PlaceMove",
+                user: {
+                    userName: "Gummi"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'O',
+                x: 1,
+                y: 0
+            },
+            {
+                type: "PlaceMove",
+                user: {
+                    userName: "TheGuy"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'X',
+                x: 0,
+                y: 1
+            },
+            {
+                type: "PlaceMove",
+                user: {
+                    userName: "Gummi"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'O',
+                x: 2,
+                y: 1
+            }]
 
-            when = [{
-                type: "PlaceMove",
-                user: {
-                    userName: "Gummi"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29",
-                side: 'X',
-                x: 1,
-                y: 0
-            },
-            {
-                type: "PlaceMove",
-                user: {
-                    userName: "TheGuy"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29",
-                side: 'X',
-                x: 0,
-                y: 1
-            },
-            {
-                type: "PlaceMove",
-                user: {
-                    userName: "Gummi"
-                },
-                name: "TheFirstGame",
-                timeStamp: "2014-12-02T11:29:29",
-                side: 'X',
-                x: 1,
-                y: 1
-            },
-            {
+            when = {
                 type: "PlaceMove",
                 user: {
                     userName: "TheGuy"
@@ -311,9 +323,9 @@ fdescribe('move command', function () {
                 side: 'X',
                 x: 0,
                 y: 2
-            }];
+            };
 
-            then = {
+            then = [{
                 type: "GameWon",
                 user: {
                     userName: "TheGuy"
@@ -321,7 +333,7 @@ fdescribe('move command', function () {
                 name: "TheFirstGame",
                 timeStamp: "2014-12-02T11:29:29",
                 side: 'X'
-            }
+            }]
         });
 
         /*it("should not emit GameDraw if won on last move", function () {
