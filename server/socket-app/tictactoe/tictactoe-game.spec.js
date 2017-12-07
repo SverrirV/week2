@@ -91,7 +91,7 @@ fdescribe('join game command', function () {
     });
 
 
-    fit('should emit game joined event...', function () {
+    it('should emit game joined event...', function () {
 
         given = [{
             type: "GameCreated",
@@ -209,14 +209,14 @@ fdescribe('move command', function () {
                 y: 0
             }
 
-            then = {
+            then = [{
                 type: "IllegalMove",
                 user: {
                     userName: "Gummi"
                 },
                 name: "TheFirstGame",
                 timeStamp: "2014-12-02T11:29:29"
-            }
+            }]
 
         });
 
