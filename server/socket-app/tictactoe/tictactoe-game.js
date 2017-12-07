@@ -38,15 +38,17 @@ module.exports = function(injected){
                             }]);
                             return;
                         }
-
-                        applyEvents([{
-                            gameId: cmd.gameId,
-                            type: "GameJoined",
-                            user: cmd.user,
-                            name: cmd.name,
-                            timeStamp: cmd.timeStamp,
-                            side:'O'
-                        }]);
+                        else {
+                            applyEvents([{
+                                gameId: cmd.gameId,
+                                type: "GameJoined",
+                                user: cmd.user,
+                                name: cmd.name,
+                                timeStamp: cmd.timeStamp,
+                                side:'O'
+                            }]);
+                        }
+                       
                     },
                     "LeaveGame": function (cmd) {
                         applyEvents([{
@@ -135,7 +137,7 @@ module.exports = function(injected){
                         // Game does not handle this query command, is declared here for making tests more robust.
                     }
                 };
-                console.log("......................................" + cmd.type);
+ 
                 if(!cmdHandlers[cmd.type]){
                     throw new Error("I do not handle command of type " + cmd.type)
                 }

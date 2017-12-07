@@ -19,7 +19,7 @@ module.exports = function (injected) {
                 };
             }
 
-            if(event.type === "JoinGame") {
+            if(event.type === "GameJoined") {
                 state.fullGame = true;
             }
 

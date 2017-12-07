@@ -139,12 +139,19 @@ fdescribe('join game command', function () {
     it('should emit FullGameJoinAttempted event when game full...', function () {
         given = [createEvent, joinEvent];
 
-        when = joinEvent;
+        when = {
+            type: "JoinGame",
+            user: {
+                userName: "Sandri"
+            },
+            name: "TheFirstGame",
+            timeStamp: "2014-12-02T11:29:29"
+        };
 
         then = [{
             type: "FullGameJoinAttempted",
             user: {
-                userName: "TheGuy"
+                userName: "Sandri"
             },
             name: "TheFirstGame",
             timeStamp: "2014-12-02T11:29:29"
