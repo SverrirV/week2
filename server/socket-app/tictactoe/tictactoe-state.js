@@ -55,7 +55,7 @@ module.exports = function (injected) {
         }
 
         function isDraw() {
-            if(!state.isGameWon && state.turnCounter >= 9) {
+            if(!state.isGameWon && state.turnCounter >= 8) {
                 return true;
             }
 

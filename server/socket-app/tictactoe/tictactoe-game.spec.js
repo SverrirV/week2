@@ -25,18 +25,6 @@ let joinEvent = {
     timeStamp: "2014-12-02T11:29:29"
 };
 
-// let winState = {
-//     board: [
-//         ['X', 'X', ''],
-//         ['O', 'O', ''],
-//         ['', '', '']
-//     ],
-//     fullGame: true,
-//     isGameWon: false,
-//     turnCounter: 3
-// };
-
-
 describe('create game command', function() {
 
 
@@ -343,11 +331,231 @@ fdescribe('move command', function () {
             }]
         });
 
-        /*it("should not emit GameDraw if won on last move", function () {
-            given = [createEvent, joinEvent];
+        it("should not emit GameDraw if won on last move", function () {
+            given = [createEvent, joinEvent,
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 0,
+                    y: 0
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 1,
+                    y: 0
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 0,
+                    y: 1
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 1,
+                    y: 1
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 1,
+                    y: 2
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 2,
+                    y: 0
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 2,
+                    y: 1
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 2,
+                    y: 2
+                },
+            
+            ];
+            when = {
+                type: "PlaceMove",
+                user: {
+                    userName: "TheGuy"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'X',
+                x: 0,
+                y: 2
+            }
+        
+            then = [{
+                type: "GameWon",
+                user: {
+                    userName: "TheGuy"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'X'
+            }]
+        });
 
-            TictactoeState.board[][]
-        });*/
+        it("should emit GameDraw when neither wins", function () {
+            given = [createEvent, joinEvent,
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 0,
+                    y: 0
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 1,
+                    y: 0
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 0,
+                    y: 1
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 1,
+                    y: 1
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 1,
+                    y: 2
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 2,
+                    y: 0
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "TheGuy"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'X',
+                    x: 2,
+                    y: 1
+                },
+                {
+                    type: "PlaceMove",
+                    user: {
+                        userName: "Gummi"
+                    },
+                    name: "TheFirstGame",
+                    timeStamp: "2014-12-02T11:29:29",
+                    side: 'O',
+                    x: 0,
+                    y: 2
+                },
+            
+            ];
+            when = {
+                type: "PlaceMove",
+                user: {
+                    userName: "TheGuy"
+                },
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+                side: 'X',
+                x: 2,
+                y: 2
+            }
+        
+            then = [{
+                type: "GameDraw",
+                name: "TheFirstGame",
+                timeStamp: "2014-12-02T11:29:29",
+            }]
+        });
 
         
 });

@@ -88,7 +88,7 @@ module.exports = function(injected){
                         }
 
                         // Move is legal.
-                       if(!gameState.checkIfWon(cmd)){
+                       if(!gameState.checkIfWon(cmd) && !gameState.isDraw() ){
                             applyEvents([{
                                 gameId: cmd.gameId,
                                 type: "MovePlaced",
@@ -101,24 +101,27 @@ module.exports = function(injected){
                             }]);
                         }    
                         else {
-                            applyEvents([{
-                                gameId: cmd.gameId,
-                                type: "GameWon",
-                                user: cmd.user,
-                                name: cmd.name,
-                                timeStamp: cmd.timeStamp,
-                                side: cmd.side
-                            }]);
+                            if(gameState.checkIfWon(cmd)) {
+                                applyEvents([{
+                                    gameId: cmd.gameId,
+                                    type: "GameWon",
+                                    user: cmd.user,
+                                    name: cmd.name,
+                                    timeStamp: cmd.timeStamp,
+                                    side: cmd.side
+                                }]);
+                            }    
+                            if(gameState.isDraw()) {
+                                applyEvents([{
+                                    gameId: cmd.gameId,
+                                    type: "GameDraw",
+                                    name: cmd.name,
+                                    timeStamp: cmd.timeStamp,
+                                }]);
+                            }
                         }
 
-                        if(gameState.isDraw()) {
-                            applyEvents([{
-                                gameId: cmd.gameId,
-                                type: "GameDraw",
-                                name: cmd.name,
-                                timeStamp: cmd.timeStamp,
-                            }]);
-                        }
+                       
 
                     },
                     "GameWon": function(cmd){
