@@ -1,5 +1,5 @@
 node {
-    env.NODEJS_HOME = "${tool 'Nafn'}"
+    env.NODEJS_HOME = "${tool 'NodeJsPlugin'}"
     checkout scm
     stage('Build') {
         echo 'Building..'
