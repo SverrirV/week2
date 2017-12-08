@@ -2,12 +2,12 @@ node {
     checkout scm
     stage('Build') {
         echo 'Building..'
-        sh 'npm install'
-        sh 'npm run startserver'
+        sh 'yarn install'
+        sh 'yarn run startserver'
     }
     stage('Test') {
         echo 'Testing..'
-        sh 'npm run test'
+        sh 'yarn run test'
     }
     stage('Deploy') {
         echo 'Deploying....'
