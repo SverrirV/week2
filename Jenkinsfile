@@ -1,5 +1,5 @@
 node {
-    env.NODEJS_HOME = "${tool 'NodeJsPlugin'}"
+    env.NODEJS_HOME = "${tool 'recent node'}"
     checkout scm
     stage('Build') {
         echo 'Building..'
