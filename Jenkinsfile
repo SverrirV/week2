@@ -4,8 +4,9 @@ node {
     stage('Build') {
         echo 'Building..'
         sh 'yarn install'
-        sh 'npm run startserver'
         sh 'cd client && yarn install'
+        sh 'npm run startpostgres && sleep 10 && npm run migratedb'
+        sh 'npm run startserver'
        
     }
     stage('Test') {
