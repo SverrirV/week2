@@ -135,7 +135,6 @@ fdescribe('join game command', function () {
             name: "TheFirstGame",
             timeStamp: "2014-12-02T11:29:29"
         };
-
         then = [{
             type: "FullGameJoinAttempted",
             user: {
@@ -176,7 +175,6 @@ fdescribe('move command', function () {
                 x: 0,
                 y: 0
             };
-
             then = [{
                 type: "MovePlaced",
                 user: {
@@ -202,7 +200,6 @@ fdescribe('move command', function () {
                 x: 0,
                 y: 0
             }];
-
             when = {
                 type: "PlaceMove",
                 user: {
@@ -238,7 +235,6 @@ fdescribe('move command', function () {
                 x: 0,
                 y: 0
             }];
-
             when = {
                 type: "PlaceMove",
                 user: {
@@ -250,7 +246,6 @@ fdescribe('move command', function () {
                 x: 0,
                 y: 1
             }
-
             then = [{
                 type: "NotYourMove",
                 user: {
@@ -307,7 +302,6 @@ fdescribe('move command', function () {
                 x: 2,
                 y: 1
             }]
-
             when = {
                 type: "PlaceMove",
                 user: {
@@ -319,7 +313,6 @@ fdescribe('move command', function () {
                 x: 0,
                 y: 2
             };
-
             then = [{
                 type: "GameWon",
                 user: {
@@ -434,7 +427,6 @@ fdescribe('move command', function () {
                 x: 0,
                 y: 2
             }
-        
             then = [{
                 type: "GameWon",
                 user: {
@@ -549,7 +541,6 @@ fdescribe('move command', function () {
                 x: 2,
                 y: 2
             }
-        
             then = [{
                 type: "GameDraw",
                 name: "TheFirstGame",
