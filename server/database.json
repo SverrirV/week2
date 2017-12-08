@@ -3,7 +3,7 @@
     "driver": "pg",
     "user": "postgres",
     "password": "mysecretpassword",
-    "host": "pg2",
+    "host": "ecs-agent",
     "database": "postgres",
     "schema": "postgres",
     "port": 5432,
