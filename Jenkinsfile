@@ -5,6 +5,7 @@ node {
         echo 'Building..'
         sh 'npm install'
         sh 'npm run startserver'
+        //Checking if jenkins picks up git push
     }
     stage('Test') {
         echo 'Testing..'
