@@ -2,14 +2,12 @@ node {
     checkout scm
     stage('Build') {
         echo 'Building..'
-        sh 'curl -o- -L https://yarnpkg.com/install.sh | bash'
-        sh 'export PATH="$HOME/.yarn/bin:$PATH"'
-        sh 'yarn install'
-        sh 'yarn run startserver'
+        sh 'npm install'
+        sh 'npm run startserver'
     }
     stage('Test') {
         echo 'Testing..'
-        sh 'yarn run test'
+        sh 'npm run test'
     }
     stage('Deploy') {
         echo 'Deploying....'
