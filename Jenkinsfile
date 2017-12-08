@@ -3,10 +3,10 @@ node {
     checkout scm
     stage('Build') {
         echo 'Building..'
+        sh 'npm run startprosgres && sleep 10 && npm run migratedb'
         sh 'yarn install'
         sh 'cd client && yarn install'
         sh 'npm run startserver'
-    
     }
     stage('Test') {
         echo 'Testing..'
