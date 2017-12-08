@@ -3,7 +3,7 @@
     "driver": "pg",
     "user": "postgres",
     "password": "mysecretpassword",
-    "host": " amazon/amazon-ecs-agent:latest",
+    "host": "postgres",
     "database": "postgres",
     "schema": "postgres",
     "port": 5432,
