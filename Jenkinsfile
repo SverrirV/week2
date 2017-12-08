@@ -3,15 +3,16 @@ node {
     checkout scm
     stage('Build') {
         echo 'Building..'
-        sh 'npm install'
+        sh 'yarn install'
         sh 'npm run startserver'
-        //Checking if jenkins picks up git push
+        sh 'cd client && yarn install'
+       
     }
     stage('Test') {
         echo 'Testing..'
         sh 'npm run test'
     }
     stage('Deploy') {
-        echo 'Deploying....'
+        sh './provision-new-environment.sh'
     }
 }
