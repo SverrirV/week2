@@ -1,4 +1,5 @@
 node {
+    env.NODEJS_HOME = "${tool 'Nafn'}"
     checkout scm
     stage('Build') {
         echo 'Building..'
